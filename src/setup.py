@@ -18,12 +18,13 @@ REQUIRED_PACKAGES = {
     'seaborn': 'seaborn>=0.11.0',
     'plotly': 'plotly>=5.0.0',
     'jupyter': 'jupyter>=1.0.0',
-    'matplotlib': 'matplotlib>=3.3.0'  
+    'matplotlib': 'matplotlib>=3.3.0',
+    'kaleido': 'kaleido>=0.2.1'
 }
 
 def check_python_version():
     """Check if Python version is compatible."""
-    min_version = (3, 7) # I am using 3.11 locally, check and modify later. Explore if you can check for Conda instead
+    min_version = (3, 7) # I am using 3.14 locally, check and modify later. Explore if you can check for Conda instead
     current_version = sys.version_info[:2]
     
     if current_version < min_version:

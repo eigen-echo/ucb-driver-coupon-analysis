@@ -6,6 +6,8 @@ Exploring driver decisions on UCI coupon data. Statistical & visual insights int
 
 **[Setup Instructions](docs/SETUP.md)** - Complete installation and environment setup guide
 
+**[Assignment Instructions](docs/assignment-instructions.md)** - Detailed assignment requirements, data description, and analysis problems
+
 ### Quick Start
 ```bash
 jupyter notebook
