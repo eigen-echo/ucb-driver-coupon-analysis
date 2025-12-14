@@ -1,0 +1,6 @@
+.codesight/
+.vscode/
+*.log
+.DS_Store
+data/*
+
