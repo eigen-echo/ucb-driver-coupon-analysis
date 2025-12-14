@@ -10,26 +10,27 @@ import os
 import importlib.util
 from pathlib import Path
 
-# Required packages for the EDA project
+# Required packages for the EDA project 
+# TODO - can this be synced with requirements.txt automatically?
 REQUIRED_PACKAGES = {
     'pandas': 'pandas>=1.3.0',
     'numpy': 'numpy>=1.21.0',
     'seaborn': 'seaborn>=0.11.0',
     'plotly': 'plotly>=5.0.0',
     'jupyter': 'jupyter>=1.0.0',
-    'matplotlib': 'matplotlib>=3.3.0'  # Often used with seaborn
+    'matplotlib': 'matplotlib>=3.3.0'  
 }
 
 def check_python_version():
     """Check if Python version is compatible."""
-    min_version = (3, 7)
+    min_version = (3, 7) # I am using 3.11 locally, check and modify later. Explore if you can check for Conda instead
     current_version = sys.version_info[:2]
     
     if current_version < min_version:
-        print(f"❌ Python {min_version[0]}.{min_version[1]}+ is required. Current version: {sys.version}")
+        print(f"Python {min_version[0]}.{min_version[1]}+ is required. Current version: {sys.version}")
         return False
     
-    print(f"✅ Python version {sys.version.split()[0]} is compatible")
+    print(f"Python version {sys.version.split()[0]} is compatible")
     return True
 
 def check_virtual_environment():
@@ -42,10 +43,10 @@ def check_virtual_environment():
     
     if in_venv:
         venv_path = os.environ.get('VIRTUAL_ENV', sys.prefix)
-        print(f"✅ Virtual environment detected: {venv_path}")
+        print(f"Virtual environment detected: {venv_path}")
         return True
     else:
-        print("⚠️  No virtual environment detected")
+        print("No virtual environment detected")
         return False
 
 def check_package_installed(package_name):
@@ -81,20 +82,20 @@ def check_and_install_packages():
     missing_packages = []
     installed_packages = []
     
-    print("\n📦 Checking required packages...")
+    print("\n Checking required packages...")
     print("-" * 50)
     
     for package_name, package_spec in REQUIRED_PACKAGES.items():
         if check_package_installed(package_name):
             version = get_package_version(package_name)
-            print(f"✅ {package_name} {version}")
+            print(f"{package_name} {version}")
             installed_packages.append(package_name)
         else:
-            print(f"❌ {package_name} - Not installed")
+            print(f"{package_name} - Not installed")
             missing_packages.append((package_name, package_spec))
     
     if missing_packages:
-        print(f"\n⚠️  Missing {len(missing_packages)} required package(s)")
+        print(f"\nMissing {len(missing_packages)} required package(s)")
         print("\nMissing packages:")
         for pkg_name, pkg_spec in missing_packages:
             print(f"  - {pkg_name}")
@@ -108,28 +109,28 @@ def check_and_install_packages():
             for pkg_name, pkg_spec in missing_packages:
                 print(f"Installing {pkg_name}...")
                 if install_package(pkg_spec):
-                    print(f"✅ Successfully installed {pkg_name}")
+                    print(f"Successfully installed {pkg_name}")
                 else:
-                    print(f"❌ Failed to install {pkg_name}")
+                    print(f"Failed to install {pkg_name}")
                     failed_installs.append(pkg_name)
             
             if failed_installs:
-                print(f"\n❌ Failed to install: {', '.join(failed_installs)}")
+                print(f"\nFailed to install: {', '.join(failed_installs)}")
                 print("Please install them manually using:")
                 for pkg_name in failed_installs:
                     pkg_spec = next(spec for name, spec in missing_packages if name == pkg_name)
                     print(f"  pip install {pkg_spec}")
                 return False
             else:
-                print("\n✅ All packages installed successfully!")
+                print("\nAll packages installed successfully!")
                 return True
         else:
-            print("\n❌ Setup cancelled. Please install required packages manually:")
+            print("\nSetup cancelled. Please install required packages manually:")
             for pkg_name, pkg_spec in missing_packages:
                 print(f"  pip install {pkg_spec}")
             return False
     else:
-        print("\n✅ All required packages are installed!")
+        print("\nAll required packages are installed!")
         return True
 
 def create_requirements_file():
@@ -137,23 +138,23 @@ def create_requirements_file():
     requirements_path = Path(__file__).parent.parent / "requirements.txt"
     
     if not requirements_path.exists():
-        print(f"\n📝 Creating requirements.txt file...")
+        print(f"\nCreating requirements.txt file...")
         with open(requirements_path, 'w') as f:
             f.write("# UCB Driver Coupon Analysis EDA Requirements\n")
             f.write("# Install with: pip install -r requirements.txt\n\n")
             for package_spec in REQUIRED_PACKAGES.values():
                 f.write(f"{package_spec}\n")
-        print(f"✅ Created {requirements_path}")
+        print(f"Created {requirements_path}")
     else:
-        print(f"✅ Requirements file already exists: {requirements_path}")
+        print(f"Requirements file already exists: {requirements_path}")
 
 def print_setup_instructions():
     """Print setup instructions for users."""
     print("\n" + "="*60)
-    print("🚀 UCB DRIVER COUPON ANALYSIS - SETUP GUIDE")
+    print("UCB DRIVER COUPON ANALYSIS - SETUP GUIDE")
     print("="*60)
     
-    print("\n📋 RECOMMENDED SETUP STEPS:")
+    print("\nRECOMMENDED SETUP STEPS:")
     print("1. Create a virtual environment:")
     print("   python -m venv venv")
     print("\n2. Activate the virtual environment:")
@@ -169,7 +170,7 @@ def print_setup_instructions():
 
 def main():
     """Main setup function."""
-    print("🔍 UCB Driver Coupon Analysis - Environment Setup")
+    print("UCB Driver Coupon Analysis - Environment Setup")
     print("="*50)
     
     # Check Python version
@@ -180,7 +181,7 @@ def main():
     venv_active = check_virtual_environment()
     
     if not venv_active:
-        print("\n⚠️  RECOMMENDATION: Use a virtual environment")
+        print("\nRECOMMENDATION: Use a virtual environment")
         print("This helps avoid package conflicts with your system Python.")
         
         response = input("\nContinue without virtual environment? (y/n): ").lower().strip()
@@ -195,11 +196,11 @@ def main():
     packages_ready = check_and_install_packages()
     
     if packages_ready:
-        print("\n🎉 SETUP COMPLETE!")
+        print("\nSETUP COMPLETE!")
         print("="*30)
-        print("✅ All dependencies are installed")
-        print("✅ Ready to run the analysis notebook")
-        print("\n🚀 Next steps:")
+        print("All dependencies are installed")
+        
+        print("\nNext steps:")
         print("1. Open Jupyter Notebook: jupyter notebook")
         print("2. Navigate to and open: prompt.ipynb")
         print("3. Run the cells to start your EDA!")
@@ -211,11 +212,11 @@ def main():
                 try:
                     subprocess.run([sys.executable, '-m', 'jupyter', 'notebook'])
                 except KeyboardInterrupt:
-                    print("\n👋 Jupyter Notebook stopped")
+                    print("\nJupyter Notebook stopped")
                 except Exception as e:
-                    print(f"\n❌ Error starting Jupyter: {e}")
+                    print(f"\nError starting Jupyter: {e}")
     else:
-        print("\n❌ SETUP INCOMPLETE")
+        print("\nSETUP INCOMPLETE")
         print("Please resolve the package installation issues above.")
         print_setup_instructions()
         sys.exit(1)
