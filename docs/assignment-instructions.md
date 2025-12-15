@@ -26,31 +26,35 @@ The attributes of this data set include:
 
 ### 1. User Attributes
 
-- **Gender**: male, female
-- **Age**: below 21, 21 to 25, 26 to 30, etc.
-- **Marital Status**: single, married partner, unmarried partner, or widowed
-- **Number of children**: 0, 1, or more than 1
-- **Education**: high school, bachelors degree, associates degree, or graduate degree
-- **Occupation**: architecture & engineering, business & financial, etc.
-- **Annual income**: less than $12500, $12500 - $24999, $25000 - $37499, etc.
-- **Number of times that he/she goes to a bar**: 0, less than 1, 1 to 3, 4 to 8 or greater than 8
-- **Number of times that he/she buys takeaway food**: 0, less than 1, 1 to 3, 4 to 8 or greater than 8
-- **Number of times that he/she goes to a coffee house**: 0, less than 1, 1 to 3, 4 to 8 or greater than 8
-- **Number of times that he/she eats at a restaurant with average expense less than $20 per person**: 0, less than 1, 1 to 3, 4 to 8 or greater than 8
-- **Number of times that he/she goes to a bar**: 0, less than 1, 1 to 3, 4 to 8 or greater than 8
+Feature | Data Type | Values | Description
+| --- | --- | --- | --- |
+destination | Enum | Home, No Urgent Place, Work | Driving destination, 3 distinct values
+passanger |Enum |  Alone, Friend(s), Kid(s), Partner | Passangers in the car, 4 distinct values
+weather | Enum | Rainy, Snowy, Sunny | Driving weather conditions, 3 distinct values
+temperature | Number | 30, 55, 80 | Numerical, rounded to nearest value, Temperature in Fahrenheit
+time | Enum | 7AM, 10AM, 2PM, 6PM, 10PM | Rounded to nearest Time of the day in Hour format, 5 distinct values
+coupon | Enum | Bar, Carry out & Take away, coffeehouse, Restaurant(<20), Restaurant(20-50) | Coupon category - Restaurant(<20) and Restaurant(20-50) mean restaurants where the expense per person is less than $20 and between $20-$50 respectively
+expiration | Enum | 2h, 1d | When does the coupon expire, 2 distinct values
+gender | Enum |  Female, Male | Driver's gender
+age | Enum | below21, 21, 26, 31, 36, 41, 46, 50plus | Driver's age grouped in bins
+maritalStatus | Enum | Divorced, Married partner, Single, Unmarried partner, Widowed | Driver's marital/relationship status
+has_children | Boolean | 0, 1 | Whether driver has children or not
+education | Enum | Some High School, High School Graduate, Some college - no degree, Associates degree, Bachelors degree, Graduate degree (Masters or Doctorate) | Driver's highest education degree obtained
+occupation | Enum | Architecture & Engineering, Arts Design Entertainment Sports & Media, Building & Grounds Cleaning & Maintenance, Business & Financial, Community & Social Services, Computer & Mathematical, Construction & Extraction, Education&Training&Library, Farming Fishing & Forestry, Food Preparation & Serving Related, Healthcare Practitioners & Technical, Healthcare Support, Installation Maintenance & Repair, Legal, Life Physical Social Science, Management, Office & Administrative Support, Personal Care & Service, Production Occupations, Protective Service, Retired, Sales & Related, Student, Transportation & Material Moving, Unemployed | Driver's occupation, 25 distinct values
+income | Enum |  Less than $12500, $12500 - $24999, $25000 - $37499, $37500 - $49999, $50000 - $62499, $62500 - $74999, $75000 - $87499, $87500 - $99999, $100000 or More | Driver's income range, 9 distinct groups
+car | Enum | Car that is too old to install Onstar :D, crossover, do not drive, Mazda5, Scooter and motorcycle | Car type, lot of nulls
+Bar | Enum | never, less1, 1~3, 4~8, gt8 | Number of times respondent goes to a bar every month
+CoffeeHouse | Enum | less1, never, 1~3, 4~8, gt8 | Number of times respondent goes to a coffeehouse every month, 5 distinct values
+CarryAway | Enum | never, less1, 1~3, 4~8, gt8 | Number of times respondent eats take away food every month
+RestaurantLessThan20 | Enum | never, less1, 1~3, 4~8, gt8 | Number of times respondent eats at a restaurant where the expense per person is less than $20 every month
+Restaurant20To50 | Enum | never, less1, 1~3, 4~8, gt8 | Number of times respondent eats at a restaurant where the expense per person is between $20 to $50 every month
+toCoupon_GEQ5min | Boolean | 0, 1 | Driving distance to the venue for the coupon is greater than 5 minutes
+toCoupon_GEQ15min | Boolean | 0, 1 | Driving distance to the venue for the coupon is greater than 15 minutes
+toCoupon_GEQ25min | Boolean | 0, 1 | Driving distance to the venue for the coupon is greater than 25 minutes
+direction_same | Boolean | 0, 1 | Is the venue for the coupon in the same driving direction as the driver's destination?
+direction_opp | Boolean | 0, 1 | Is the venue for the coupon in the opposite driving direction as the driver's destination?
+Y | Boolean | 0, 1 | Did the respondent accept the coupon? (1 if they answered 'right away' or 'later before the coupon expires'; 0 if they answered 'no, I do not want the coupon')
 
-### 2. Contextual Attributes
-
-- **Driving destination**: home, work, or no urgent destination
-- **Location of user, coupon and destination**: we provide a map to show the geographical location of the user, destination, and the venue, and we mark the distance between each two places with time of driving. The user can see whether the venue is in the same direction as the destination.
-- **Weather**: sunny, rainy, or snowy
-- **Temperature**: 30F, 55F, or 80F
-- **Time**: 10AM, 2PM, or 6PM
-- **Passenger**: alone, partner, kid(s), or friend(s)
-
-### 3. Coupon Attributes
-
-- **Time before it expires**: 2 hours or one day
 
 ## Analysis Problems
 
