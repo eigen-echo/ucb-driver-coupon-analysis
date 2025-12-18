@@ -19,6 +19,7 @@ Then open [`prompt.ipynb`](prompt.ipynb) to begin the EDA.
 ```
 ucb-driver-coupon-analysis/
 ├── data/                   # Dataset files
+├── docs/                   # supporting docs
 ├── images/                 # Generated plots and images
 ├── notebooks/              # Additional analysis notebooks
 ├── src/
@@ -36,6 +37,14 @@ This project performs exploratory data analysis on the UCI coupon dataset to und
 - Factors influencing coupon acceptance
 - Statistical relationships between variables
 - Visual insights through comprehensive plotting
+
+**[📊 Complete Analysis Summary](docs/analysis-summary.md)** - Comprehensive findings, recommendations, and modeling suggestions
+
+### Key Findings
+- **Bar coupons**: 41% acceptance rate, with 73% acceptance among frequent bar-goers
+- **Social context matters**: 65-70% acceptance when traveling with friends vs 45-50% with children
+- **Convenience is key**: 69% acceptance for same-direction travel vs 44% for opposite direction
+- **Lifestyle compatibility**: Existing behavior patterns are the strongest predictors of acceptance
 
 ## Do yo want to Contribute ?
 
