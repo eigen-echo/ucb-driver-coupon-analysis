@@ -94,12 +94,36 @@ Then open [`prompt.ipynb`](../prompt.ipynb) to begin the EDA.
 
 ## Dependencies
 
+### Core Analysis
 - **pandas** (≥1.3.0) - Data manipulation and analysis
 - **numpy** (≥1.21.0) - Numerical computing
 - **seaborn** (≥0.11.0) - Statistical data visualization
 - **plotly** (≥5.0.0) - Interactive visualizations
-- **jupyter** (≥1.0.0) - Notebook environment
 - **matplotlib** (≥3.3.0) - Plotting library
+
+### Notebook Environment
+- **jupyter** (≥1.0.0) - Notebook environment
+- **nbconvert** (≥7.0.0) - Notebook to HTML conversion
+- **ipykernel** (≥6.0.0) - Jupyter kernel support
+- **kaleido** (≥0.2.0) - Static image export for Plotly
+
+### Interactive Dashboard
+- **streamlit** (≥1.28.0) - Web-based dashboard framework
+
+## Running the Dashboard
+
+After installation, you can run the interactive Streamlit dashboard:
+
+```bash
+streamlit run dashboard.py
+```
+
+This opens a browser-based dashboard with:
+- Overview metrics and visualizations
+- Coupon type deep-dive analysis
+- Time-based pattern exploration
+- Custom segment comparison tools
+- Pivot table builder
 
 ## 🔧 Troubleshooting
 
